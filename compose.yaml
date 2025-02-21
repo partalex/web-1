@@ -18,7 +18,7 @@
       context: .
       dockerfile: Frontend/Dockerfile
     ports:
-      - "80:8080"
+      - "443:8080"
     volumes:
       - ./Frontend:/src/Frontend
 #    environment:
