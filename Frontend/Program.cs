@@ -7,8 +7,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddLogging();
 
-var apiBaseAddress = builder.Configuration.GetSection("ApiSettings:BaseAddress").Value!;
-// var apiBaseAddress = "http://api:8080/";
+// var apiBaseAddress = builder.Configuration.GetSection("ApiSettings:BaseAddress").Value!;
+var apiBaseAddress = "http://api:8080/";
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiBaseAddress) });
 
 builder.Services.AddScoped<TestService>();
