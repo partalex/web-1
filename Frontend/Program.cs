@@ -1,8 +1,5 @@
 using Frontend.Components;
 using Frontend.Services;
-using Microsoft.AspNetCore.DataProtection;
-
-// using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
 
