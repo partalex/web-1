@@ -1,0 +1,9 @@
+# User-specific files (JetBrains Rider)
+.idea/
+
+# Temp files
+**/bin/
+**/obj/
+**/.venv/
+Python/Decors/
+**/Python/Output/

@@ -1,0 +1,6 @@
+@API_Host = http://localhost:8000
+
+GET {{API_Host}}/weatherforecast/
+Accept: application/json
+
+###

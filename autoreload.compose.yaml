@@ -1,0 +1,16 @@
+﻿services:
+  api:
+    image: api
+    build:
+      context: .
+      dockerfile: API/AutoReload.Dockerfile
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./API:/src/API
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
