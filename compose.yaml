@@ -7,6 +7,8 @@
       dockerfile: API/Dockerfile
     ports:
       - "8000:8080"
+    volumes:
+      - ./API:/src/API
     networks:
       - app-network
 
@@ -17,6 +19,10 @@
       dockerfile: Frontend/Dockerfile
     ports:
       - "80:8080"
+    volumes:
+      - ./Frontend:/src/Frontend
+#    environment:
+#      - ASPNETCORE_ENVIRONMENT=Production
     networks:
       - app-network
 

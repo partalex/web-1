@@ -1,4 +1,5 @@
 ﻿services:
+  
   api:
     image: api
     build:
@@ -10,7 +11,22 @@
       - ./API:/src/API
     networks:
       - app-network
+  
+  frontend:
+    image: frontend
+    build:
+      context: .
+      dockerfile: Frontend/AutoReload.Dockerfile
+    ports:
+      - "80:8081"
+    volumes:
+      - ./Frontend:/src/Frontend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - app-network
 
 networks:
   app-network:
     driver: bridge
+  
