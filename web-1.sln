@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nginx.conf = nginx.conf
 		AmazonLinux2-compose.yaml = AmazonLinux2-compose.yaml
 		AmazonLinux2.Dockerfile = AmazonLinux2.Dockerfile
+		local-nginx.conf = local-nginx.conf
+		local-compose.yaml = local-compose.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "Frontend\Frontend.csproj", "{6029FDCB-5BAB-4FBF-8021-AACD92245760}"

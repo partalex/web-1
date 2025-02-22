@@ -1,9 +1,14 @@
 ﻿services:
+  
   api:
     image: api
     build:
       context: .
       dockerfile: API/Dockerfile
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./API:/src/API
     networks:
       - app-network
 
@@ -12,6 +17,10 @@
     build:
       context: .
       dockerfile: Frontend/Dockerfile
+    ports:
+      - "5000:8080"
+    volumes:
+      - ./Frontend:/src/Frontend
     networks:
       - app-network
 
@@ -20,7 +29,7 @@
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - api
       - frontend
