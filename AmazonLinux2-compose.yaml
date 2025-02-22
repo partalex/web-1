@@ -1,0 +1,18 @@
+﻿version: "3.8"
+
+services:
+  amazon-linux:
+    build:
+      context: .
+      dockerfile: AmazonLinux2.Dockerfile
+    container_name: amazon-linux-container
+    tty: true
+    stdin_open: true
+    networks:
+      - app-network
+    volumes:
+      - ./amazon-linux:/workspace
+
+networks:
+  app-network:
+    driver: bridge
