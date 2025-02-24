@@ -1,0 +1,67 @@
+﻿@page "/quickgrid"
+@using System.Text.Json
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject HttpClient Http
+@inject ILogger<QuickGridR> Logger
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<h3>QuickGrid with Pagination</h3>
+
+@if (_dogs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <QuickGrid Items="_dogs.AsQueryable()" Class="table" Pagination="_paginationState">
+        <PropertyColumn Property="@(dog => dog.Id)" Title="ID"/>
+        <PropertyColumn Property="@(dog => dog.Name)" Title="Name"/>
+        <TemplateColumn Title="Image">
+            <img src="@context.Image.Url" style="width: 150px; height: 150px;" alt="Image"/>
+        </TemplateColumn>
+    </QuickGrid>
+
+    <Paginator State="_paginationState"/>
+}
+
+@code {
+
+    readonly PaginationState _paginationState = new() { ItemsPerPage = 5 };
+
+    private List<Dog>? _dogs;
+
+    readonly string _apiKey = "live_yRleksQfK5hzf42KPRCWArfWaw4JVEita7n424YqoOTw9ecLCWL8m2LvUDezpa60";
+
+    protected override async Task OnInitializedAsync()
+    {
+        _dogs = await LoadDataAsync();
+    }
+
+    private async Task<List<Dog>> LoadDataAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, "https://api.thedogapi.com/v1/breeds");
+        request.Headers.Add("x-api-key", _apiKey); // Add API key to header
+
+        var response = await Http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+        var stream = await response.Content.ReadAsStreamAsync();
+        var dogList = await JsonSerializer.DeserializeAsync<List<Dog>>(stream, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        Logger.LogInformation($"Loaded {dogList!.Count} dogs");
+        return dogList;
+    }
+
+    public class Dog(string name, ImageData image, int id)
+    {
+        public int Id { get; } = id;
+        public string Name { get; } = name;
+        public ImageData Image { get; } = image;
+    }
+
+    public class ImageData(string url)
+    {
+        public string Url { get; } = url;
+    }
+
+}
+

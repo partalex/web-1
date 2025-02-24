@@ -1,0 +1,67 @@
+﻿@page "/form"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+@inject IJSRuntime JsRuntime
+
+<h3>Form</h3>
+
+<EditForm FormName="create-product" Model="@Item" method="post"
+          OnValidSubmit="HandleValidSubmit"
+          OnInvalidSubmit="HandleInvalidSubmit">
+
+    <p>Name:
+        <InputText @bind-Value="@Item.Name" autocomplete="no"></InputText>
+        <ValidationMessage For="@(() => Item.Name)"/>
+    </p>
+
+    <p>Price:
+        <InputNumber @bind-Value="@Item.Price" autocomplete="no"></InputNumber>
+        <ValidationMessage For="@(() => Item.Price)"/>
+    </p>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+</EditForm>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-success" role="alert">@message</div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">@errorMessage</div>
+}
+
+@code {
+
+    string? message;
+    string? errorMessage;
+
+    void HandleValidSubmit()
+    {
+        JsRuntime.InvokeVoidAsync("alert", $"Product {Item.Name} with price {Item.Price} has been created.");
+        message = $"Product {Item.Name} with price {Item.Price} has been created.";
+        errorMessage = null;
+    }
+
+    void HandleInvalidSubmit()
+    {
+        errorMessage = "Form is not valid. Please check the fields and try again.";
+        message = null;
+    }
+
+    [SupplyParameterFromForm] Product Item { get; set; } = new();
+
+    class Product
+    {
+        [Required(ErrorMessage = "Name is required.")]
+        public string Name { get; set; }
+
+        public decimal Price { get; set; }
+    }
+
+}

@@ -1,0 +1,17 @@
+﻿services:
+
+  auto-front:
+    image: auto-front
+    build:
+      context: .
+      dockerfile: AutoFront/AutoFront/Dockerfile
+    ports:
+      - "80:8080"
+    volumes:
+      - ./AutoFront:/src/AutoFront
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
