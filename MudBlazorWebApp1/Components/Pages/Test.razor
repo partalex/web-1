@@ -1,0 +1,20 @@
+﻿@page "/test"
+
+<PageTitle> @PageName </PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">@PageName</MudText>
+
+<MudGrid>
+    @for (var i = 0; i < NumberOfColumns; i++)
+    {
+        <MudItem xs="12" sm="4">
+            <Carousel/>
+        </MudItem>
+    }
+</MudGrid>
+
+@code {
+    private const string PageName = "Test";
+
+    private const int NumberOfColumns = 5;
+}

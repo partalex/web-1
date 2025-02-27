@@ -1,0 +1,43 @@
+﻿@* <MudText Typo="Typo.h3" GutterBottom="true">Carousel</MudText> *@
+
+<MudCarousel Class="mud-width-full" Style="height:500px;" ShowArrows="@_arrows" ShowBullets="@_bullets"
+             EnableSwipeGesture="@_enableSwipeGesture" AutoCycle="@_autocycle"
+             AutoCycleTime="@(TimeSpan.FromSeconds(_autoCycleTime))" TData="object">
+
+    @foreach (var image in _images)
+    {
+        <MudCarouselItem Transition="_transition">
+            <div class="d-flex" style="height:100%">
+                <MudImage Class="mx-auto my-auto" Src=@image/>
+            </div>
+        </MudCarouselItem>
+    }
+
+</MudCarousel>
+
+@* <MudSelect @bind-Value="_transition" Label="Transition" Class="ma-2"> *@
+@*     <MudSelectItem Value="@Transition.Fade">Fade</MudSelectItem> *@
+@*     <MudSelectItem Value="@Transition.Slide">Slide</MudSelectItem> *@
+@*     <MudSelectItem Value="@Transition.None">None</MudSelectItem> *@
+@* </MudSelect> *@
+@* <MudSwitch @bind-Value="_arrows" Color="Color.Primary">Show Arrows</MudSwitch> *@
+@* <MudSwitch @bind-Value="_bullets" Color="Color.Primary">Show Bullets</MudSwitch> *@
+@* <MudSwitch @bind-Value="_enableSwipeGesture" Color="Color.Primary">Enable Swipe Gesture</MudSwitch> *@
+@* <MudSwitch @bind-Value="_autocycle" Color="Color.Primary">Auto Cycle</MudSwitch> *@
+
+@code{
+    private bool _arrows = true;
+    private bool _bullets = true;
+    private bool _enableSwipeGesture = true;
+    private bool _autocycle = true;
+    private int _autoCycleTime = 2;
+    private Transition _transition = Transition.Slide;
+
+    private readonly string[] _images =
+    [
+        "Images/Square.png",
+        "Images/Square.png",
+        "Images/Square.png"
+    ];
+
+}

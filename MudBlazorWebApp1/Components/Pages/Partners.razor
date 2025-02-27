@@ -1,0 +1,45 @@
+﻿@page "/partners"
+
+<PageTitle>@PageName</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">@PageName</MudText>
+
+<MudGrid>
+    @foreach (var partner in _allPartners)
+    {
+        <MudItem xs="12" sm="6">
+            <MudCard>
+                <MudCardMedia Image="@partner.ImageUrl"/>
+                <MudCardContent>
+                    <MudText Typo="Typo.h6" GutterBottom="true">@partner.Name</MudText>
+                    <MudLink Href="@partner.Link" Target="_blank" Typo="Typo.body2" Color="Color.Primary">
+                        <b>@partner.Link</b>
+                    </MudLink>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    }
+</MudGrid>
+
+
+@code {
+
+    private const string PageName = "Partners";
+
+    class Partner(string name, string link, string imageUrl)
+    {
+        public string Name { get; } = name;
+        public string Link { get; } = link;
+        public string ImageUrl { get; } = imageUrl;
+    }
+
+    private readonly IEnumerable<Partner> _allPartners =
+    [
+        new("Partner 1", "https://www.google.rs", "Images/Square.png"),
+        new("Partner 2", "https://www.google.rs", "Images/Square.png"),
+        new("Partner 3", "https://www.google.rs", "Images/Square.png"),
+        new("Partner 4", "https://www.google.rs", "Images/Square.png"),
+        new("Partner 5", "https://www.google.rs", "Images/Square.png"),
+    ];
+
+}

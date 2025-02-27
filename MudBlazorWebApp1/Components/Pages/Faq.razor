@@ -1,0 +1,42 @@
+﻿@page "/faq"
+
+<PageTitle>@PageName</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">@PageName</MudText>
+
+<MudGrid>
+    @foreach (var faq in _allFaqs)
+    {
+        <MudItem xs="12" sm="4">
+            <MudPaper>
+                <MudText Typo="Typo.h6" Align="Align.Center" GutterBottom="true">@faq.Question</MudText>
+                <MudText Typo="Typo.body1" Align="Align.Justify">@faq.Answer</MudText>
+            </MudPaper>
+        </MudItem>
+    }
+</MudGrid>
+
+@code {
+    private const string PageName = "Frequently Asked Questions";
+
+    private readonly IEnumerable<FaqItem> _allFaqs = new List<FaqItem>
+    {
+        new("What is MudBlazor?",
+            "MudBlazor is a component library for Blazor applications. It is based on Google's Material Design and built on top of Blazor and CSS frameworks like Bootstrap and Materialize."),
+        new("What is Blazor?",
+            "Blazor is a framework for building interactive web UIs using C# and .NET. It is a part of the ASP.NET Core framework."),
+        new("What is Material Design?",
+            "Material Design is a design language developed by Google. It is a visual language that synthesizes the classic principles of good design with the innovation and possibility of technology and science."),
+        new("What is Bootstrap?",
+            "Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS- and JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components."),
+        new("What is Materialize?",
+            "Materialize is a modern responsive front-end framework based on Material Design. It is a CSS framework that is based on Google's Material Design."),
+    };
+
+    class FaqItem(string question, string answer)
+    {
+        public string Question { get; } = question;
+        public string Answer { get; } = answer;
+    }
+
+}

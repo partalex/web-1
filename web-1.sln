@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFront", "AutoFront\Auto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFront.Client", "AutoFront\AutoFront.Client\AutoFront.Client.csproj", "{4178233F-1175-4F53-9A35-79601A2ED726}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MudBlazorWebApp1", "MudBlazorWebApp1\MudBlazorWebApp1.csproj", "{FE787E2B-761F-4838-942E-FA0BAEF5D436}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MudBlazorWebApp1", "MudBlazorWebApp1\MudBlazorWebApp1.csproj", "{BEDC5F8C-3477-4488-9C01-869CCB67B20A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +45,9 @@ Global
 		{4178233F-1175-4F53-9A35-79601A2ED726}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4178233F-1175-4F53-9A35-79601A2ED726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4178233F-1175-4F53-9A35-79601A2ED726}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE787E2B-761F-4838-942E-FA0BAEF5D436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE787E2B-761F-4838-942E-FA0BAEF5D436}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE787E2B-761F-4838-942E-FA0BAEF5D436}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE787E2B-761F-4838-942E-FA0BAEF5D436}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEDC5F8C-3477-4488-9C01-869CCB67B20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEDC5F8C-3477-4488-9C01-869CCB67B20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEDC5F8C-3477-4488-9C01-869CCB67B20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEDC5F8C-3477-4488-9C01-869CCB67B20A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
