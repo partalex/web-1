@@ -7,9 +7,9 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# Copy and restore DTO project
-COPY ["DTO/DTO.csproj", "DTO/"]
-RUN dotnet restore "DTO/DTO.csproj"
+# Copy and restore Shared project
+COPY ["Shared/Shared.csproj", "Shared/"]
+RUN dotnet restore "Shared/Shared.csproj"
 
 COPY ["API/API.csproj", "API/"]
 RUN dotnet restore "API/API.csproj"
