@@ -4,11 +4,11 @@
     image: mud-blazor
     build:
       context: .
-      dockerfile: MudBlazorWebApp1/Dockerfile
+      dockerfile: Frontend/Dockerfile
     ports:
       - "80:8080"
     volumes:
-      - ./MudBlazorWebApp1:/src/MudBlazorWebApp1
+      - ./Frontend:/src/Frontend
     networks:
       - app-network
 
