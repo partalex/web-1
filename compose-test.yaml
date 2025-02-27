@@ -1,14 +1,14 @@
 ﻿services:
 
   auto-front:
-    image: auto-front
+    image: mud-blazor
     build:
       context: .
-      dockerfile: AutoFront/AutoFront/Dockerfile
+      dockerfile: MudBlazorWebApp1/Dockerfile
     ports:
       - "80:8080"
     volumes:
-      - ./AutoFront:/src/AutoFront
+      - ./MudBlazorWebApp1:/src/MudBlazorWebApp1
     networks:
       - app-network
 
