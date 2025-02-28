@@ -23,4 +23,24 @@
     <ItemGroup>
       <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
+
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Content\Components\Dividers\DividerBasic.razor" />
+      <_ContentIncludedByDefault Remove="Content\Components\Dividers\DividerBlock.razor" />
+      <_ContentIncludedByDefault Remove="Content\Components\Albums\AlbumCollection.razor" />
+      <_ContentIncludedByDefault Remove="Content\Components\Albums\AlbumItemAction.razor" />
+      <_ContentIncludedByDefault Remove="Content\Components\Albums\AlbumItemDecor.razor" />
+      <_ContentIncludedByDefault Remove="Content\Components\Albums\AlbumItemPartner.razor" />
+      <_ContentIncludedByDefault Remove="Content\Components\Albums\AlbumItemProductOption.razor" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <AdditionalFiles Include="Content\Components\Filters\FilterBar.razor" />
+      <AdditionalFiles Include="Content\Components\Filters\FilterCheck.razor" />
+      <AdditionalFiles Include="Content\Components\Filters\FilterRadio.razor" />
+      <AdditionalFiles Include="Content\Components\Filters\FilterRange.razor" />
+      <AdditionalFiles Include="Content\Components\Filters\FilterText.razor" />
+    </ItemGroup>
 </Project>

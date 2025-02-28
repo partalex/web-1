@@ -1,0 +1,22 @@
+@using Frontend.Models.Filters
+@using Shared.Realisations
+
+<MudExpansionPanel Text="@Model.Name">
+    <MudRadioGroup @bind-Value="Model.Value">
+        @foreach (var option in Model.Options)
+        {
+            <MudRadio Label="@option.Name" Value="@option.Id"/>
+        }
+    </MudRadioGroup>
+</MudExpansionPanel>
+
+@code{
+    [Parameter] public required FilterRadioModel Model { get; init; }
+
+    private void HandleChange(FilterOption option)
+    {
+        Model.Value = option.Id;
+        Model.FilterChanged();
+    }
+
+}

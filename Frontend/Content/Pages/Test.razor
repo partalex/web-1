@@ -1,0 +1,78 @@
+﻿@page "/test"
+@using Frontend.Content.Components
+@using Frontend.Models.Albums
+@inject ILogger<Test> Logger
+@inject ISnackbar Snackbar
+
+<PageTitle> @PageName </PageTitle>
+
+<Heading1 Title="@PageName"/>
+
+<MudContainer
+    MaxWidth="MaxWidth.ExtraExtraLarge"
+    Class="overflow-auto"
+    Style="height: 739px;">
+
+    @* Visible on small screen *@
+    <MudHidden Breakpoint="Breakpoint.MdAndUp">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenOverlay">Show Overlay</MudButton>
+    </MudHidden>
+    <MudOverlay @bind-Visible="_visible" DarkBackground
+                AutoClose="true" OnClosed="OnOverlayClosed">
+        <MudPaper Class="pa-4">
+            <h3>Overlay Content</h3>
+            <p>Ovo je sadržaj koji će se prikazati unutar overlay-a.</p>
+        </MudPaper>
+    </MudOverlay>
+
+
+    @* Style="height: 1615px;" *@
+    <MudGrid>
+        @foreach (var decor in _collection)
+        {
+            <MudItem xs="12" sm="6" xl="4" xxl="3">
+                <Image
+                    Model="@decor"/>
+            </MudItem>
+        }
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private const string PageName = "Test";
+
+    private bool _visible;
+
+    public void OpenOverlay()
+    {
+        _visible = true;
+        StateHasChanged();
+    }
+
+    public void OnOverlayClosed()
+    {
+        Snackbar.Add("Filter applied!", Severity.Normal);
+    }
+
+    private readonly IEnumerable<AlbumItemImageDecor> _collection =
+    [
+        new("Kronospan/Color/0540.webp", "0540"),
+        new("Kronospan/Color/7031.webp", "7031"),
+        new("Kronospan/Color/K097.webp", "K097"),
+        new("Kronospan/Color/6299.webp", "6299"),
+        new("Kronospan/Color/9561.webp", "9561"),
+        new("Kronospan/Color/0101.webp", "0101"),
+        new("Kronospan/Color/0110.webp", "0110"),
+        new("Kronospan/Color/0564.webp", "0564"),
+        // ------------------------------------------
+        new("Kronospan/Color/0540.webp", "0540"),
+        new("Kronospan/Color/7031.webp", "7031"),
+        new("Kronospan/Color/K097.webp", "K097"),
+        new("Kronospan/Color/6299.webp", "6299"),
+        new("Kronospan/Color/9561.webp", "9561"),
+        new("Kronospan/Color/0101.webp", "0101"),
+        new("Kronospan/Color/0110.webp", "0110"),
+        new("Kronospan/Color/0564.webp", "0564"),
+    ];
+
+}

@@ -1,0 +1,48 @@
+﻿@page "/services"
+@using Frontend.Content.Components
+
+<PageTitle>@PageName</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">@PageName</MudText>
+
+<MudGrid>
+    @foreach (var partner in _allServices)
+    {
+        <GridItem1>
+            <ChildContent>
+                <MudCard>
+                    <MudCardMedia Image="@partner.ImageUrl"/>
+                    <MudCardContent>
+                        <MudText Typo="Typo.h6" GutterBottom="true">@partner.Name</MudText>
+                        <MudText Typo="Typo.body2">@partner.Description</MudText>
+                    </MudCardContent>
+                </MudCard>
+            </ChildContent>
+        </GridItem1>
+    }
+</MudGrid>
+
+
+@code {
+
+    private const string PageName = "Services";
+
+    class ServiceItem(string name, string description, string imageUrl)
+    {
+        public string Name { get; } = name;
+        public string Description { get; } = description;
+        public string ImageUrl { get; } = imageUrl;
+    }
+
+    private readonly IEnumerable<ServiceItem> _allServices =
+    [
+        new("Service 1", "Service 1 Description", "Images/Square.png"),
+        new("Service 2", "Service 2 Description", "Images/Square.png"),
+        new("Service 3", "Service 3 Description", "Images/Square.png"),
+        new("Service 4", "Service 4 Description", "Images/Square.png"),
+        new("Service 5", "Service 5 Description", "Images/Square.png"),
+        new("Service 6", "Service 6 Description", "Images/Square.png"),
+        new("Service 7", "Service 7 Description", "Images/Square.png"),
+    ];
+
+}

@@ -1,0 +1,61 @@
+@using Frontend.Models.Filters
+
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button p-2" type="button" data-bs-toggle="collapse"
+                data-bs-target="#accordionPanel-@Model.Id" aria-expanded="false"
+                aria-controls="accordionPanel-@Model.Id">
+            @Model.Name
+        </button>
+    </h2>
+    <div id="accordionPanel-@Model.Id" class="accordion-collapse collapse show">
+        <div class="accordion-body p-2">
+            <div class="row g-3">
+                <div class="col">
+                    <label for="range-min-@Model.Id" class="form-label">Min: @MinValue</label>
+                    <input type="range" class="form-range" id="range-min-@Model.Id" value="@Model.MinValue"
+                           min="@Model.MinValue" max="@(Model.MinValue / 2 + Model.MaxValue / 2)"
+                           @onchange="HandleMin"/>
+                </div>
+                <div class="col">
+                    <label for="range-max-@Model.Id" class="form-label">Max: @MaxValue</label>
+                    <input type="range" class="form-range" id="range-max-@Model.Id" value="@Model.MaxValue"
+                           min="@(Model.MinValue / 2 + Model.MaxValue / 2)" max="@Model.MaxValue"
+                           @onchange="HandleMax"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code{
+    [Parameter] public required FilterRangeModel Model { get; init; }
+
+    protected override void OnInitialized()
+    {
+        MinValue = Model.MinValue;
+        MaxValue = Model.MaxValue;
+    }
+
+    private int MinValue { get; set; }
+    private int MaxValue { get; set; }
+
+    private void HandleMin(ChangeEventArgs e)
+    {
+        MinValue = int.Parse(e.Value?.ToString() ?? "0");
+        UpdateModelValue();
+    }
+
+    private void HandleMax(ChangeEventArgs e)
+    {
+        MaxValue = int.Parse(e.Value?.ToString() ?? "0");
+        UpdateModelValue();
+    }
+
+    private void UpdateModelValue()
+    {
+        Model.Value = new Tuple<int, int>(MinValue, MaxValue);
+        Model.FilterChanged();
+    }
+
+}

@@ -1,0 +1,13 @@
+﻿<MudGrid>
+    @foreach (var item in Items)
+    {
+        <MudItem xs="6" md="4" class="g-3">
+            @item
+        </MudItem>
+    }
+</MudGrid>
+
+@code{
+
+    [Parameter] public IEnumerable<RenderFragment> Items { get; set; } = [];
+}

@@ -1,0 +1,24 @@
+﻿@page "/about"
+@using Frontend.Content.Components
+
+@inject IJSRuntime JsRuntime
+
+<PageTitle>@PageName</PageTitle>
+
+<Heading1
+    Title="@PageName"
+    Description="This is a simple example of a Blazor page."
+/>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ShowAlert">Show Dialog</MudButton>
+
+@code {
+
+    private const string PageName = "About";
+
+    private void ShowAlert()
+    {
+        JsRuntime.InvokeVoidAsync("alert", "Hello from Blazor");
+    }
+
+}

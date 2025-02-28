@@ -1,0 +1,12 @@
+﻿@page "/product/{id:int}"
+@rendermode InteractiveServer
+
+<PageTitle>Product</PageTitle>
+
+
+<MudText Typo="Typo.h3" GutterBottom="true"> Product Id: @Id</MudText>
+
+@code {
+
+    [Parameter] public int Id { get; set; }
+}

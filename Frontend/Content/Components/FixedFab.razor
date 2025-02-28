@@ -1,0 +1,18 @@
+﻿<MudFab StartIcon="@StartIcon" Color="Color.Primary"
+        Style="position: fixed; bottom: 16px; right: 16px;"
+        OnClick="TogglePopover"/>
+
+<MudPopover Open="@IsFilterOpen">
+        <MudPaper Class="pa-4">
+                @ChildContent
+        </MudPaper>
+</MudPopover>
+
+
+
+@code{
+        [Parameter] public string StartIcon { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; }
+        private void TogglePopover() => IsFilterOpen = !IsFilterOpen;
+        private bool IsFilterOpen;
+}

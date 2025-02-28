@@ -1,0 +1,26 @@
+@using Frontend.Models.Filters
+<MudExpansionPanels MultiExpansion="true">
+    @foreach (var filter in Filters)
+    {
+        switch (filter)
+        {
+            case FilterCheckBoxModel filterCheck:
+                <FilterCheckBox Model="@(filterCheck as FilterCheckBoxModel)"/>
+                break;
+            case FilterRadioModel filterRadio:
+                <FilterRadio Model="@(filterRadio as FilterRadioModel)"/>
+                break;
+            case FilterRangeModel filterRange:
+                <FilterRange Model="@(filterRange as FilterRangeModel)"/>
+                break;
+            case FilterTextModel filterText:
+                <FilterText Model="@(filterText as FilterTextModel)"/>
+                break;
+        }
+    }
+</MudExpansionPanels>
+
+
+@code {
+    [Parameter] public required IEnumerable<FilterModel> Filters { get; init; }
+}

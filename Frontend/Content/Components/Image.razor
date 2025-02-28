@@ -1,0 +1,31 @@
+﻿@attribute [StreamRendering]
+@using Frontend.Models.Albums
+@using Frontend.Services
+@inject ClientStorageService StorageService
+
+
+<MudCard>
+    @if (_imageBase64 != null)
+    {
+        <MudCardMedia Image="@_imageBase64"/>
+    }
+    else
+    {
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px; background: burlywood"></MudPaper>
+    }
+    <MudCardContent>
+        <MudText Typo="Typo.h6" GutterBottom="true">@Model.Name</MudText>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter] public AlbumItemImageDecor Model { get; set; }
+    private string? _imageBase64;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _imageBase64 = await StorageService.GetFileBase64(Model.ImageUrl);
+        StateHasChanged();
+    }
+
+}

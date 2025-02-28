@@ -1,0 +1,15 @@
+@using Frontend.Models.Filters
+<MudExpansionPanel Text="@Model.Name" Expanded="@true">
+    <MudInputString @bind-Value="Model.Value" Label="@Model.Name" Placeholder="@Model.Placeholder"/>
+</MudExpansionPanel>
+
+@code{
+    [Parameter] public required FilterTextModel Model { get; init; }
+
+    private void HandleInput(ChangeEventArgs e)
+    {
+        Model.Value = e.Value?.ToString() ?? "";
+        Model.FilterChanged();
+    }
+
+}

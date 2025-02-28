@@ -1,0 +1,11 @@
+<MudText Typo="Typo.h3" GutterBottom="true">@Title</MudText>
+
+@if (!string.IsNullOrEmpty(Description))
+{
+    <MudText Typo="Typo.body1">@Description</MudText>
+}
+
+@code {
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public string? Description { get; set; }
+}

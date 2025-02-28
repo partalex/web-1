@@ -1,0 +1,145 @@
+﻿@page "/decors"
+
+@using Frontend.Content.Components
+@using Frontend.Services
+@using Frontend.Models.Albums
+@using Frontend.Models.Filters
+@using Shared.Realisations
+@using Frontend.Content.Components.Filters
+@inject DecorService DecorService
+@attribute [StreamRendering]
+@inject ILogger<Decors> Logger
+@inject ISnackbar Snackbar
+
+<PageTitle>@PageName</PageTitle>
+
+<Heading1
+    Title="@PageName"
+/>
+
+@* Visible on small screen *@
+<MudHidden Breakpoint="Breakpoint.MdAndUp">
+    @* <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenOverlay">Show Filters</MudButton> *@
+    <FixedFab
+        StartIcon="@Icons.Material.Filled.FilterList">
+        <ChildContent>
+            <FilterBar Filters="@Filters"/>
+        </ChildContent>
+    </FixedFab>
+</MudHidden>
+
+<MudContainer
+    MaxWidth="MaxWidth.ExtraExtraLarge"
+>
+    @* Class="overflow-auto" *@
+    Style="height: 739px;"
+    <MudGrid>
+
+        @* Hidden on small screens *@
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudItem md="3" xl="2" xxl="1">
+                <FilterBar Filters="@Filters"/>
+            </MudItem>
+        </MudHidden>
+        @foreach (var decor in _collection)
+        {
+            <MudItem xs="12" sm="6" md="3" lg="3">
+                <Image
+                    Model="@decor"
+                />
+            </MudItem>
+        }
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private const string PageName = "Decors";
+
+    private IEnumerable<AlbumItemImageDecor> _collection = [];
+    private IEnumerable<FilterModel> Filters { get; set; } = [];
+    private readonly FilterParamsDecor _filterParams = new();
+    private FilterDecor _filterDecor = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.WhenAll(InitFilters(), ApplyFilters("Decors loaded!"));
+    }
+
+    private async Task ApplyFilters(string snackbarMessage = "Filter applied!")
+    {
+        var temp = await DecorService.Filter(_filterParams);
+        _collection = temp
+            .Select(x => new AlbumItemImageDecor(
+                x.ImageUrl,
+                x.Name
+            ));
+        Snackbar.Add(snackbarMessage, Severity.Normal);
+        StateHasChanged();
+        Logger.LogCritical(snackbarMessage);
+    }
+
+    private async Task ResetFilters()
+    {
+        _filterParams.Reset();
+        await ApplyFilters();
+    }
+
+    private async Task HandleMaterialsChange(List<int> value)
+    {
+        _filterParams.UpdateMaterials(value);
+        await ApplyFilters();
+    }
+
+    private async Task HandleColorsChange(List<int> value)
+    {
+        _filterParams.UpdateColors(value);
+        await ApplyFilters();
+    }
+
+    private async Task HandlePurposesChange(List<int> value)
+    {
+        _filterParams.UpdatePurposes(value);
+        await ApplyFilters();
+    }
+
+    private async Task HandleReflectionsChange(List<int> value)
+    {
+        _filterParams.UpdateReflections(value);
+        await ApplyFilters();
+    }
+
+    private async Task HandleNameChange(string value)
+    {
+        _filterParams.UpdateName(value);
+        await ApplyFilters();
+    }
+
+    private async Task HandlePatternsChange(List<int> value)
+    {
+        _filterParams.UpdatePatterns(value);
+        await ApplyFilters();
+    }
+
+    private async Task HandleManufacturersChange(List<int> value)
+    {
+        _filterParams.UpdateManufacturers(value);
+        await ApplyFilters();
+    }
+
+
+    private async Task InitFilters()
+    {
+        _filterDecor = await DecorService.GetFilters();
+        Filters =
+        [
+            new FilterTextModel(1, _filterDecor.Materials.Name, EventCallback.Factory.Create<string>(this, HandleNameChange)),
+            new FilterCheckBoxModel(6, _filterDecor.Purposes, EventCallback.Factory.Create<List<int>>(this, HandlePurposesChange)),
+            new FilterCheckBoxModel(3, _filterDecor.Colors, EventCallback.Factory.Create<List<int>>(this, HandleColorsChange)),
+            new FilterCheckBoxModel(4, _filterDecor.Patterns, EventCallback.Factory.Create<List<int>>(this, HandlePatternsChange)),
+            new FilterCheckBoxModel(5, _filterDecor.Reflections, EventCallback.Factory.Create<List<int>>(this, HandleReflectionsChange)),
+            new FilterCheckBoxModel(8, _filterDecor.Manufacturers, EventCallback.Factory.Create<List<int>>(this, HandleManufacturersChange)),
+            new FilterCheckBoxModel(7, _filterDecor.Materials, EventCallback.Factory.Create<List<int>>(this, HandleMaterialsChange)),
+        ];
+    }
+
+}

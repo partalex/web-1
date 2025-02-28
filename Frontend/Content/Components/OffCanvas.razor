@@ -1,0 +1,41 @@
+@code {
+    [Parameter] public string ButtonText { get; set; } = "Toggle offcanvas";
+    [Parameter] public string OffCanvasTitle { get; set; } = "Offcanvas";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
+
+@* <button class="btn btn-outline-secondary d-md-none @ButtonClasses" type="button" data-bs-toggle="offcanvas" *@
+@*         data-bs-target="#@OffCanvasId" *@
+@*         aria-controls="@OffCanvasId">@ButtonText *@
+@* </button> *@
+@* <div class="offcanvas offcanvas-start d-md-none" data-bs-scroll="true" tabindex="-1" id="@OffCanvasId" *@
+@*      aria-labelledby="@OffCanvasId-label"> *@
+@*     <div class="offcanvas-header"> *@
+@*         <h5 class="offcanvas-title" id="@OffCanvasId-label">@OffCanvasTitle</h5> *@
+@*         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> *@
+@*     </div> *@
+@*     <div class="offcanvas-body"> *@
+@*         @ChildContent *@
+@*     </div> *@
+@* </div> *@
+
+<MudDrawer @bind-Open="@_open" Overlay="false" Elevation="1" Variant="@DrawerVariant.Temporary" Class="d-md-none">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">My App</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <MudNavLink Match="NavLinkMatch.All">Store</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Library</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Community</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+
+@code {
+    private bool _open;
+
+    private void ToggleDrawer()
+    {
+        _open = !_open;
+    }
+
+}

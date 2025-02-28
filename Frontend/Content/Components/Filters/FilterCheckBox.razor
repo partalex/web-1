@@ -1,0 +1,28 @@
+@using Frontend.Models.Filters
+@inject IJSRuntime JsRuntime
+@inject ILogger<FilterCheckBox> Logger
+
+<MudExpansionPanel Text="@Model.Name" Expanded="@true">
+    @for (var i = 0; i < Model.Options.Count; ++i)
+    {
+        var index = i;
+        <MudCheckBox
+            T="bool"
+            ValueChanged="@(async newValue => await MyMethodAsync(newValue, index))"
+            Value="@Model.Values[i].Value"
+            Label="@Model.Options[i].Name"/>
+    }
+</MudExpansionPanel>
+
+@code {
+
+    [Parameter] public required FilterCheckBoxModel Model { get; init; }
+
+    private async Task MyMethodAsync(bool newValue, int index)
+    {
+        Model.UpdateValue(index, newValue);
+        Model.FilterChanged();
+        Logger.LogCritical($"Check {index} is {(newValue ? "checked" : "unchecked")}");
+        await Task.CompletedTask;
+    }
+}
