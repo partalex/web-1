@@ -11,18 +11,16 @@
     @foreach (var faq in _allFaqs)
     {
         <GridItem1>
-            <ChildContent>
-                <MudCard>
-                    <MudCardHeader>
-                        <CardHeaderContent>
-                            <MudText Typo="Typo.h6">@faq.Question</MudText>
-                        </CardHeaderContent>
-                    </MudCardHeader>
-                    <MudCardContent>
-                        <MudText>@faq.Answer</MudText>
-                    </MudCardContent>
-                </MudCard>
-            </ChildContent>
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h6">@faq.Question</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>@faq.Answer</MudText>
+                </MudCardContent>
+            </MudCard>
         </GridItem1>
     }
 </MudGrid>
