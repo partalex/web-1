@@ -22,7 +22,6 @@
     {
         Model.UpdateValue(index, newValue);
         Model.FilterChanged();
-        Logger.LogCritical($"Check {index} is {(newValue ? "checked" : "unchecked")}");
         await Task.CompletedTask;
     }
 }
