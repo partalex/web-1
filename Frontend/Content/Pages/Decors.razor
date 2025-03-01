@@ -42,7 +42,7 @@
 
         @* Hide on small screens *@
         <MudHidden Breakpoint="Breakpoint.SmAndDown">
-                <MudItem md="9" xl="10"
+            <MudItem md="9" xl="10"
                      Class="overflow-auto"
                      Style="height: 819px;">
                 <MudGrid>
@@ -63,7 +63,7 @@
                 <MudGrid>
                     @foreach (var decor in _collection)
                     {
-                        <MudItem xs="12">
+                        <MudItem xs="12" sm="6">
                             <Image
                                 Model="@decor"/>
                         </MudItem>
