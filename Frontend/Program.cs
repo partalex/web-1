@@ -10,8 +10,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddLogging();
-// var apiUrl = "http://localhost:8000/";
-var apiUrl = "http://api:8080/";
+// var apiUrl = builder.Configuration.GetValue<string>("ApiUrl")!;
+// const string apiUrl = "https://localhost:8000";
+const string apiUrl = "https://api:8080";
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiUrl) });
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ClientStorageService>();
