@@ -1,24 +1,30 @@
 ﻿@page "/about"
 @using Frontend.Content.Components
 
-@inject IJSRuntime JsRuntime
-
 <PageTitle>@PageName</PageTitle>
 
 <Heading1
     Title="@PageName"
-    Description="This is a simple example of a Blazor page."
 />
 
-<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ShowAlert">Show Dialog</MudButton>
+<MudCard>
+    <MudCardHeader>
+        <MudLink Href="https://maps.app.goo.gl/ELpQ2RayAWPPLsGJ6" Target="_blank">
+            <MudIcon Icon="@Icons.Material.Filled.LocationOn"/>
+        </MudLink>
+        <MudText Typo="Typo.h6">Contact Location</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText>1234 Main St, Anytown, USA</MudText>
+    </MudCardContent>
+</MudCard>
+
+<MudButton Variant="Variant.Outlined" Color="Color.Secondary" Href="https://www.instagram.com" Target="_blank">
+    <MudIcon Icon="@Icons.Custom.Brands.Instagram"/>
+    Instagram
+</MudButton>
 
 @code {
-
     private const string PageName = "About";
-
-    private void ShowAlert()
-    {
-        JsRuntime.InvokeVoidAsync("alert", "Hello from Blazor");
-    }
 
 }
