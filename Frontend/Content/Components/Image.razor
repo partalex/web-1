@@ -7,7 +7,8 @@
 <MudCard>
     @if (_imageBase64 != null)
     {
-        <MudCardMedia Image="@_imageBase64"/>
+        @* <MudCardMedia Image="@_imageBase64"/> *@
+        <MudCardMedia Image="@GetImageUrlWithCacheBuster(_imageBase64, _cacheBuster)"/>
     }
     else
     {
@@ -21,11 +22,21 @@
 @code {
     [Parameter] public AlbumItemImageDecor Model { get; set; }
     private string? _imageBase64;
+    private string _cacheBuster = Guid.NewGuid().ToString();
 
     protected override async Task OnInitializedAsync()
     {
         _imageBase64 = await StorageService.GetFileBase64(Model.ImageUrl);
         StateHasChanged();
+    }
+
+    private string GetImageUrlWithCacheBuster(string base64Url, string cacheBuster)
+    {
+        var uriBuilder = new UriBuilder(base64Url);
+        var query = System.Web.HttpUtility.ParseQueryString(uriBuilder.Query);
+        query["v"] = cacheBuster;
+        uriBuilder.Query = query.ToString();
+        return uriBuilder.ToString();
     }
 
 }
