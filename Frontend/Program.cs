@@ -10,7 +10,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddLogging();
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:8000/") });
+// var apiUrl = "http://localhost:8000/";
+var apiUrl = "http://api:8080/";
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiUrl) });
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ClientStorageService>();
 builder.Services.AddScoped<ItemService>();
