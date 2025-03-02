@@ -1,11 +1,7 @@
 ﻿@page "/faq"
 @using Frontend.Content.Components
 
-<PageTitle>@PageName</PageTitle>
-
-<Heading1
-    Title="@PageName"
-/>
+<PageHeading1 Title="@PageName"/>
 
 <MudGrid>
     @foreach (var faq in _allFaqs)
@@ -26,29 +22,17 @@
 </MudGrid>
 
 @code {
-    private const string PageName = "Frequently Asked Questions";
+    private const string PageName = "Pitanja";
 
     private readonly IEnumerable<FaqItem> _allFaqs = new List<FaqItem>
     {
-        new("Kako da sastavim nameštaj?", "Pratite uputstva iz priručnika."),
         new("Koji materijali se koriste u nameštaju?", "Koristimo visokokvalitetno drvo i metal."),
         new("Mogu li da prilagodim nameštaj?", "Da, nudimo opcije prilagođavanja."),
-        new("Koliko traje isporuka?", "Isporuka traje 2-3 nedelje."),
-        new("Koja je politika vraćanja?", "Možete vratiti u roku od 30 dana od kupovine."),
-        new("Kako mogu da pratim svoju porudžbinu?", "Možete pratiti porudžbinu pomoću broja za praćenje iz e-maila sa potvrdom."),
-        new("Koji alati su potrebni za sklapanje?", "Biće vam potrebni šrafciger i čekić."),
-        new("Da li postoji garancija na nameštaj?", "Da, nudimo jednogodišnju garanciju."),
-        new("Kako da održavam nameštaj?", "Čistite vlažnom krpom i izbegavajte direktnu sunčevu svetlost."),
-        new("Kako da očistim tapacirani nameštaj?", "Koristite blagu sapunicu i mekanu krpu."),
-        new("Koje boje su trenutno popularne u enterijeru?", "Trenutno su popularne neutralne boje poput sive, bež i bele, kao i zemljani tonovi."),
-        new("Kako da izaberem pravu veličinu tepiha za sobu?", "Tepih bi trebao biti dovoljno velik da svi glavni komadi nameštaja budu na njemu."),
-        new("Koji su najbolji materijali za dečiji nameštaj?", "Najbolji materijali za dečiji nameštaj su drvo, plastika i metal zbog njihove izdržljivosti i sigurnosti."),
-        new("Kako da organizujem mali prostor?", "Koristite multifunkcionalni nameštaj, vertikalni prostor i svetle boje kako biste stvorili iluziju većeg prostora."),
-        new("Koji su trendovi u dizajnu enterijera za ovu godinu?", "Trendovi uključuju minimalizam, prirodne materijale, pametne kućne tehnologije i održivost."),
-        new("Kako da zaštitim drveni nameštaj od oštećenja?", "Koristite podmetače, izbegavajte direktnu sunčevu svetlost i redovno nanosite zaštitni premaz."),
-        new("Koje biljke su najbolje za unutrašnje prostore?", "Najbolje biljke za unutrašnje prostore su fikus, sanseverija, zeleni ljiljan i filodendron."),
-        new("Kako da osvetlim tamnu sobu?", "Koristite ogledala, svetle boje, dodatne lampe i prozirne zavese kako biste maksimizirali prirodno svetlo."),
-        new("Koji su saveti za uređenje dnevne sobe?", "Koristite udoban nameštaj, dodajte lične detalje, koristite slojevito osvetljenje i održavajte prostor organizovanim."),
+        new("Da li materijale mogu kupiti odvojeno?", "Da, možete kupiti materijale odvojeno."),
+        new("Koliko traje isporuka?", "Isporuka traje 3-4 nedelje."),
+        new("Da li postoji garancija na nameštaj?", "Da, zavisi od izbora proizvoda."),
+        new("Da li se uloga crtanje naplaćuje ako se odlučim za kupovinu?", "Ne, uloga crtanje se ne naplaćuje ako se odlučite za kupovinu."),
+        new("Da li se vršite montažu nameštaja?", "Da, vršimo montažu nameštaja."),
     };
 
     class FaqItem(string question, string answer)

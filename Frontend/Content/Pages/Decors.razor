@@ -11,11 +11,7 @@
 @inject ILogger<Decors> Logger
 @inject ISnackbar Snackbar
 
-<PageTitle>@PageName</PageTitle>
-
-<Heading1
-    Title="@PageName"
-/>
+<PageHeading1 Title="@PageName"/>
 
 @* Visible on small screen *@
 <MudHidden Breakpoint="Breakpoint.MdAndUp">
@@ -76,7 +72,7 @@
 </MudContainer>
 
 @code {
-    private const string PageName = "Decors";
+    private const string PageName = "Dekori";
 
     private IEnumerable<AlbumItemImageDecor> _collection = [];
     private IEnumerable<FilterModel> Filters { get; set; } = [];

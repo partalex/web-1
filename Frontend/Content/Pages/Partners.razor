@@ -2,49 +2,44 @@
 @using Frontend.Content.Components
 @inject NavigationManager NavigationManager
 
-<PageTitle>@PageName</PageTitle>
-
-<MudText Typo="Typo.h3" GutterBottom="true">@PageName</MudText>
+<PageHeading1 Title="@PageName"/>
 
 <MudGrid>
     @foreach (var partner in _allPartners)
     {
         <GridItem1>
-            <MudCard>
-                <MudCardMedia Image="Images/Square.png" Height="400"/>
+            <MudCard Elevation="2">
+                @* <MudCardMedia Image="@partner.ImagePath" Height="400"/> *@
+                <MudImage Fluid="true" Class="rounded-t-lg" Src="@partner.ImagePath"/>
                 <MudCardContent>
-                    <MudText Typo="Typo.h5">@partner.Name</MudText>
-                    <MudText Typo="Typo.body2">@partner.Description</MudText>
-                    @* <MudText Typo="Typo.body2">Activities</MudText> *@
+                    <MudPaper Class="d-flex justify-space-between flex-grow-1 gap-4" Elevation="0">
+                        <MudText Typo="Typo.h5">@partner.Name</MudText>
+                        <MudLink Class="align-self-end" Href="@partner.Link" Color="Color.Primary">Poseti</MudLink>
+                        @* <MudText Typo="Typo.body2">@partner.Description</MudText> *@
+                        @* <MudText Typo="Typo.body2">Activities</MudText> *@
+                    </MudPaper>
                 </MudCardContent>
-                <MudCardActions>
-                    @* <MudLink Href="https://mudblazor.com" Target="_blank" Typo="Typo.body2" Color="Color.Primary"> *@
-                    @* <b>Visit</b> *@
-                    @* </MudLink> *@
-                    <MudButton OnClick="() => NavigationManager.NavigateTo(partner.Link)"
-                               Variant="Variant.Text" Color="Color.Primary">Detaljnije
-                    </MudButton>
-                </MudCardActions>
             </MudCard>
         </GridItem1>
     }
 </MudGrid>
 
-
 @code {
 
-    private const string PageName = "Partners";
+    private const string PageName = "Partneri";
 
-    class Partner(string name, string description, string link, string imageUrl)
+    class Partner(string name, string description, string link, string imagePath)
     {
         public string Name { get; } = name;
         public string Description { get; } = description;
         public string Link { get; } = link;
-        public string ImageUrl { get; } = imageUrl;
+        public string ImagePath { get; } = imagePath;
     }
 
     private readonly IEnumerable<Partner> _allPartners = new List<Partner>
     {
+        new("Blum", "An international company specializing in the production of functional furniture fittings, such as hinges, lift systems, and drawer systems, founded in 1952 and headquartered in Hoechst, Austria.", "https://www.blum.com", "Partners/Blum.webp"),
+        new("Egger", "An international company that produces wood-based materials, including particle boards, MDF, and laminate flooring, with a focus on sustainability and innovation.", "https://www.egger.com", "Partners/Egger.webp"),
         new("Blanco", "A company specializing in high-quality kitchen and bathroom fixtures, including sinks, faucets, and accessories.", "https://www.blanco.com", "Partners/Blanco.webp"),
         new("Falco", "A manufacturer of wood-based panels and furniture components, offering a wide range of products for the furniture and construction industries.", "https://www.falco.com", "Partners/Falco.webp"),
         new("Hettich", "A company known for its production of kitchenware, including enamel cookware, stainless steel cookware, and water heaters.", "https://www.hettich.com", "Partners/Hettich.webp"),
@@ -52,8 +47,6 @@
         new("Kronospan", "A leading manufacturer of wood-based panels, known for its innovative and sustainable products used in furniture, flooring, and construction.", "https://www.kronospan.com", "Partners/Kronospan.webp"),
         new("Häfele", "An international company offering a wide range of furniture fittings, architectural hardware, and electronic locking systems, known for its innovative solutions and high-quality products.", "https://www.hafele.com", "Partners/Häfele.webp"),
         new("Metalac", "A Serbian company known for its production of kitchenware, including enamel cookware, stainless steel cookware, and water heaters.", "https://www.metalac.com", "Partners/Metalac.webp"),
-        new("Blum", "An international company specializing in the production of functional furniture fittings, such as hinges, lift systems, and drawer systems, founded in 1952 and headquartered in Hoechst, Austria.", "https://www.blum.com", "Partners/Blum.webp"),
-        new("Egger", "An international company that produces wood-based materials, including particle boards, MDF, and laminate flooring, with a focus on sustainability and innovation.", "https://www.egger.com", "Partners/Egger.webp"),
     };
 
 }

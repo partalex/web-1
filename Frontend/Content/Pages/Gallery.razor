@@ -1,11 +1,7 @@
 ﻿@page "/gallery"
 @using Frontend.Content.Components
 
-<PageTitle>@PageName</PageTitle>
-
-<Heading1
-    Title="@PageName"
-/>
+<PageHeading1 Title="@PageName"/>
 
 <MudGrid>
     @for (var i = 0; i < NumberOfColumns; i++)
@@ -18,7 +14,7 @@
 
 
 @code {
-    private const string PageName = "Gallery";
+    private const string PageName = "Galerija";
 
     private const int NumberOfColumns = 5;
 }

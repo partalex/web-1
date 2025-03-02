@@ -1,9 +1,7 @@
 ﻿@page "/products"
 @using Frontend.Content.Components
 
-<PageTitle>@PageName</PageTitle>
-
-<Heading1 Title="@PageName"/>
+<PageHeading1 Title="@PageName"/>
 
 <MudGrid>
     @foreach (var product in _allProducts)
@@ -14,7 +12,7 @@
                 <Carousel/>
                 <MudCardContent>
                     <MudText Typo="Typo.h6" GutterBottom="true">@product.Name</MudText>
-                    <MudText Typo="Typo.body2">@product.Description</MudText>
+                    @* <MudText Typo="Typo.body2">@product.Description</MudText> *@
                     <MudLink Href="@($"product/{product.Id}")" Color="Color.Primary">Detaljnije</MudLink>
                 </MudCardContent>
             </MudCard>
@@ -25,7 +23,7 @@
 
 @code {
 
-    private const string PageName = "Products";
+    private const string PageName = "Proizvodi";
 
     class ProductItem(int id, string name, string description, string imageUrl = "Images/Square.png")
     {
@@ -37,13 +35,13 @@
 
     private readonly IEnumerable<ProductItem> _allProducts = new List<ProductItem>
     {
-        new(1, "Komoda za kupatilo", "Praktična komoda za odlaganje stvari u kupatilu."),
+        new(7, "Sobna vrata", "Kvalitetna sobna vrata za svaki enterijer."),
+        new(5, "Kuhinja", "Moderna kuhinja sa puno prostora za skladištenje."),
         new(2, "Klizni ormar", "Ormar sa kliznim vratima, idealan za uštedu prostora."),
+        new(1, "Komoda za kupatilo", "Praktična komoda za odlaganje stvari u kupatilu."),
         new(3, "Trpezarijski sto", "Prostran sto za trpezariju, idealan za porodične obroke."),
         new(4, "Krevet", "Udoban krevet za miran san."),
-        new(5, "Kuhinja", "Moderna kuhinja sa puno prostora za skladištenje."),
         new(6, "Radni sto", "Ergonomski radni sto za produktivan rad."),
-        new(7, "Sobna vrata", "Kvalitetna sobna vrata za svaki enterijer.")
     };
 
 }

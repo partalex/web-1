@@ -1,30 +1,90 @@
 ﻿@page "/about"
 @using Frontend.Content.Components
 
-<PageTitle>@PageName</PageTitle>
+<PageHeading1 Title="@PageName"/>
 
-<Heading1
-    Title="@PageName"
-/>
-
-<MudCard>
-    <MudCardHeader>
-        <MudLink Href="https://maps.app.goo.gl/ELpQ2RayAWPPLsGJ6" Target="_blank">
-            <MudIcon Icon="@Icons.Material.Filled.LocationOn"/>
-        </MudLink>
-        <MudText Typo="Typo.h6">Contact Location</MudText>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText>1234 Main St, Anytown, USA</MudText>
-    </MudCardContent>
-</MudCard>
-
-<MudButton Variant="Variant.Outlined" Color="Color.Secondary" Href="https://www.instagram.com" Target="_blank">
-    <MudIcon Icon="@Icons.Custom.Brands.Instagram"/>
-    Instagram
-</MudButton>
+<MudContainer>
+    <MudGrid>
+        <MudItem md="6">
+            <MudImage Fluid="true" Src="@ImagePath" Alt="Company Logo" Class="rounded-lg" Elevation="2"/>
+        </MudItem>
+        <MudItem md="6">
+            @foreach (var item in _aboutItems)
+            {
+                switch (item)
+                {
+                    case AboutItem aboutItem:
+                        <MudText Typo="Typo.h6" GutterBottom="true" Color="Color.Secondary">
+                            @aboutItem.Title
+                        </MudText>
+                        <MudText Typo="Typo.body1" GutterBottom="true">
+                            @aboutItem.Description
+                        </MudText>
+                        break;
+                    case AboutList aboutList:
+                        <MudText Typo="Typo.h6" Color="Color.Secondary">
+                            @aboutList.Title
+                        </MudText>
+                        <MudList T="string">
+                            @foreach (var listItem in aboutList.Items)
+                            {
+                                <MudListItem>
+                                    <MudIcon Icon="@listItem.Icon" Class="mr-2"/>
+                                    <br>
+                                    <MudLink Href="@listItem.Link" Target="_blank" Color="Color.Primary">
+                                        @listItem.Description
+                                    </MudLink>
+                                </MudListItem>
+                            }
+                        </MudList>
+                        break;
+                }
+            }
+        </MudItem>
+    </MudGrid>
+</MudContainer>
 
 @code {
-    private const string PageName = "About";
+    private const string PageName = "O nama";
+    private const string ImagePath = "Images/Square.png";
+
+    interface IAboutItem
+    {
+    }
+
+    class AboutItem(string title, string description) : IAboutItem
+    {
+        public string Title { get; } = title;
+        public string Description { get; } = description;
+    }
+
+    class AboutListItem(string description, string icon, string? link = null) : IAboutItem
+    {
+        public string Description { get; } = description;
+        public string Icon { get; } = icon;
+        public string? Link { get; } = link;
+    }
+
+    class AboutList(string title, IEnumerable<AboutListItem> items) : IAboutItem
+    {
+        public string Title { get; } = title;
+        public IEnumerable<AboutListItem> Items { get; } = items;
+    }
+
+    private readonly IEnumerable<IAboutItem> _aboutItems =
+    [
+        new AboutItem("Više o nama", "Radionica Vasilić se bavi dizajniranjem, izradom i ugradnjom enterijera sa 15-ogodišnjim iskustvom."),
+        new AboutList("Usluge enterijera", [
+            new AboutListItem("Dizajn", Icons.Material.Filled.DesignServices, "/services"),
+            new AboutListItem("Izrada", Icons.Material.Filled.Build, "/services"),
+            new AboutListItem("Ugradnja", Icons.Material.Filled.Construction, "/services"),
+        ]),
+        new AboutList("Kontakt", [
+            new AboutListItem("@radionica_vasilic", Icons.Custom.Brands.Instagram, "https://www.instagram.com/radionica_vasilic"),
+            new AboutListItem("Viber telefon", @Icons.Material.Filled.PermPhoneMsg, "viber://chat?number=%2B381642063022"),
+            new AboutListItem("vasilicradionica@gmail.com", Icons.Material.Filled.Email, "mailto:vasilicradionica@gmail.com"),
+            new AboutListItem("Posetite nas", Icons.Material.Filled.LocationOn, "https://maps.app.goo.gl/ELpQ2RayAWPPLsGJ6"),
+        ]),
+    ];
 
 }

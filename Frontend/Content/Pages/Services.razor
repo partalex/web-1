@@ -1,9 +1,7 @@
 ﻿@page "/services"
 @using Frontend.Content.Components
 
-<PageTitle>@PageName</PageTitle>
-
-<MudText Typo="Typo.h3" GutterBottom="true">@PageName</MudText>
+<PageHeading1 Title="@PageName"/>
 
 <MudGrid>
     @foreach (var partner in _allServices)
@@ -23,10 +21,11 @@
 
 @code {
 
-    private const string PageName = "Services";
+    private const string PageName = "Usluge";
 
-    class ServiceItem(string name, string description, string imageUrl)
+    class ServiceItem(int id, string name, string description, string imageUrl = "Images/Square.png")
     {
+        public int Id { get; } = id;
         public string Name { get; } = name;
         public string Description { get; } = description;
         public string ImageUrl { get; } = imageUrl;
@@ -34,13 +33,14 @@
 
     private readonly IEnumerable<ServiceItem> _allServices =
     [
-        new("Service 1", "Service 1 Description", "Images/Square.png"),
-        new("Service 2", "Service 2 Description", "Images/Square.png"),
-        new("Service 3", "Service 3 Description", "Images/Square.png"),
-        new("Service 4", "Service 4 Description", "Images/Square.png"),
-        new("Service 5", "Service 5 Description", "Images/Square.png"),
-        new("Service 6", "Service 6 Description", "Images/Square.png"),
-        new("Service 7", "Service 7 Description", "Images/Square.png"),
+        new(1, "CNC obrada", "Koristimo najsavremeniju tehnologiju CNC obrade kako bismo precizno izrezali i oblikovali materijale poput drveta, plastike i metala, pružajući visokokvalitetne komponente za vaše enterijere. Naša CNC tehnologija omogućava nam da postignemo nevjerojatnu preciznost i detaljnost u izradi različitih dijelova enterijera, prilagođenih vašim potrebama i estetskim preferencijama."),
+        new(2, "Dizajniranje", "Naš tim stručnjaka za dizajn će pažljivo osmisliti svaki detalj vašeg enterijera, koristeći kreativnost i funkcionalnost kako bismo stvorili estetski privlačan i praktičan prostor po vašim željama. Kroz pažljiv proces dizajniranja, uzimamo u obzir vaše preferencije, stilove i funkcionalne zahtjeve kako bismo kreirali prostor koji odražava vašu jedinstvenu osobnost i udovoljava vašim potrebama."),
+        new(3, "Falcovanje", "Precizno falcovanje materijala omogućava nam da stvorimo čvrste i elegantne ivice na vašem nameštaju i dekorativnim elementima, pružajući im sofisticiran izgled i dugotrajnu trajnost. Naša tehnika falcovanja kombinuje visoku preciznost i stručnost kako bismo postigli savršeno glatke i estetski privlačne ivice, unoseći eleganciju i profinjenost u svaki komad nameštaja."),
+        new(4, "Gerovanje", "Naša tehnika gerovanja omogućava nam da izradimo glatke i precizne ivice na vašim materijalima, što doprinosi estetskom i profesionalnom izgledu vašeg enterijera. Korištenjem vrhunskih alata i vještina, postižemo nevjerojatnu preciznost u obradi ivica, stvarajući ravne, simetrične i privlačne detalje koji unose eleganciju i sofisticiranost u svaki prostor."),
+        new(5, "Izrada", "Posvećeni smo detaljnoj izradi svakog elementa vašeg enterijera, koristeći vrhunske materijale i veštine zanata kako bismo postigli visok standard kvaliteta i udovoljili vašim očekivanjima. Naš tim majstora pažljivo pristupa svakom koraku procesa izrade, osiguravajući da svaki komad nameštaja ili dekorativni element bude izrađen s ljubavlju, pažnjom i stručnošću."),
+        new(6, "Kantovanje", "Koristeći visokokvalitetne kant trake, vršimo precizno kantovanje ivica pločastih materijala, što ih čini otpornijim na habanje i pruža im estetski privlačan završetak. Naša tehnika kantovanja osigurava da svaka ivica bude čvrsto zaštićena i estetski privlačna, doprinoseći dugotrajnosti i atraktivnosti svakog komada nameštaja ili dekorativnog elementa."),
+        new(7, "Sečenje", "Naša precizna tehnika sečenja omogućava nam da tačno oblikujemo materijale prema vašim specifikacijama, osiguravajući savršeno prilagođene komponente za vaš enterijer. Bez obzira na materijal ili složenost dizajna, naši stručnjaci za sečenje garantuju visoku preciznost i kvalitetu rezultata, pružajući vam komade koji se savršeno uklapaju u vaš prostor i stil."),
+        new(8, "Ugradnja", "Naš stručni tim za ugradnju će pažljivo instalirati svaki element vašeg enterijera, osiguravajući da sve bude postavljeno sa preciznošću i profesionalizmom, stvarajući funkcionalan i estetski prijatan prostor. Bez obzira da li je reč o nameštaju, dekorativnim elementima ili kompleksnim sistemima, naši majstori za ugradnju pristupaju svakom zadatku s pažnjom i stručnošću, osiguravajući da sve bude postavljeno kako treba i da vaš prostor izgleda besprekorno.")
     ];
 
 }
