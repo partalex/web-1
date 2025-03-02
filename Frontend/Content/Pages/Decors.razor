@@ -151,11 +151,11 @@
         Filters =
         [
             new FilterTextModel(1, _filterDecor.Materials.Name, EventCallback.Factory.Create<string>(this, HandleNameChange)),
-            new FilterCheckBoxModel(6, _filterDecor.Purposes, EventCallback.Factory.Create<List<int>>(this, HandlePurposesChange)),
-            new FilterCheckBoxModel(3, _filterDecor.Colors, EventCallback.Factory.Create<List<int>>(this, HandleColorsChange)),
-            new FilterCheckBoxModel(4, _filterDecor.Patterns, EventCallback.Factory.Create<List<int>>(this, HandlePatternsChange)),
-            new FilterCheckBoxModel(5, _filterDecor.Reflections, EventCallback.Factory.Create<List<int>>(this, HandleReflectionsChange)),
             new FilterCheckBoxModel(8, _filterDecor.Manufacturers, EventCallback.Factory.Create<List<int>>(this, HandleManufacturersChange)),
+            new FilterCheckBoxModel(6, _filterDecor.Purposes, EventCallback.Factory.Create<List<int>>(this, HandlePurposesChange)),
+            // new FilterCheckBoxModel(3, _filterDecor.Colors, EventCallback.Factory.Create<List<int>>(this, HandleColorsChange)),
+            // new FilterCheckBoxModel(4, _filterDecor.Patterns, EventCallback.Factory.Create<List<int>>(this, HandlePatternsChange)),
+            new FilterCheckBoxModel(5, _filterDecor.Reflections, EventCallback.Factory.Create<List<int>>(this, HandleReflectionsChange)),
             new FilterCheckBoxModel(7, _filterDecor.Materials, EventCallback.Factory.Create<List<int>>(this, HandleMaterialsChange)),
         ];
     }
