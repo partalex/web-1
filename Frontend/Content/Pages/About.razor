@@ -31,7 +31,7 @@
                                 <MudListItem>
                                     <MudIcon Icon="@listItem.Icon" Class="mr-2"/>
                                     <br>
-                                    <MudLink Href="@listItem.Link" Target="_blank" Color="Color.Primary">
+                                    <MudLink Href="@listItem.Link" Target="@listItem.Target" Color="Color.Primary">
                                         @listItem.Description
                                     </MudLink>
                                 </MudListItem>
@@ -58,10 +58,11 @@
         public string Description { get; } = description;
     }
 
-    class AboutListItem(string description, string icon, string? link = null) : IAboutItem
+    class AboutListItem(string description, string icon, string? link = null, string target = "_self") : IAboutItem
     {
         public string Description { get; } = description;
         public string Icon { get; } = icon;
+        public string Target { get; } = target;
         public string? Link { get; } = link;
     }
 
@@ -80,10 +81,10 @@
             new AboutListItem("Ugradnja", Icons.Material.Filled.Construction, "/services"),
         ]),
         new AboutList("Kontakt", [
-            new AboutListItem("@radionica_vasilic", Icons.Custom.Brands.Instagram, "https://www.instagram.com/radionica_vasilic"),
-            new AboutListItem("Viber telefon", @Icons.Material.Filled.PermPhoneMsg, "viber://chat?number=%2B381642063022"),
-            new AboutListItem("vasilicradionica@gmail.com", Icons.Material.Filled.Email, "mailto:vasilicradionica@gmail.com"),
-            new AboutListItem("Posetite nas", Icons.Material.Filled.LocationOn, "https://maps.app.goo.gl/ELpQ2RayAWPPLsGJ6"),
+            new AboutListItem("@radionica_vasilic", Icons.Custom.Brands.Instagram, "https://www.instagram.com/radionica_vasilic", "_blank"),
+            new AboutListItem("Viber telefon", @Icons.Material.Filled.PermPhoneMsg, "viber://chat?number=%2B381642063022", "_blank"),
+            new AboutListItem("vasilicradionica@gmail.com", Icons.Material.Filled.Email, "mailto:vasilicradionica@gmail.com", "_blank"),
+            new AboutListItem("Posetite nas", Icons.Material.Filled.LocationOn, "https://maps.app.goo.gl/ELpQ2RayAWPPLsGJ6", "_blank"),
         ]),
     ];
 

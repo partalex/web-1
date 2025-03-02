@@ -1,14 +1,20 @@
 @using Frontend.Models.Filters
+@inject ILogger<FilterText> Logger
+
 <MudExpansionPanel Text="@Model.Name" Expanded="@true">
-    <MudInputString @bind-Value="Model.Value" Label="@Model.Name" Placeholder="@Model.Placeholder"/>
+    <MudInputString @bind-Value="Model.Value" Label="@Model.Name"
+                    Placeholder="@Model.Placeholder"
+                    TextChanged="HandleChange"
+    />
 </MudExpansionPanel>
 
 @code{
     [Parameter] public required FilterTextModel Model { get; init; }
 
-    private void HandleInput(ChangeEventArgs e)
+    // EventCallback<string>
+    private void HandleChange(string value)
     {
-        Model.Value = e.Value?.ToString() ?? "";
+        Model.Value = value;
         Model.FilterChanged();
     }
 
