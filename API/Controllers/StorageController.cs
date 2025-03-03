@@ -1,4 +1,4 @@
-using API.Services;
+using API.Services.Storage;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -8,7 +8,7 @@ namespace API.Controllers;
 public class StorageController(
     ILogger<StorageController> logger,
     ApplicationDbContext context,
-    ServerStorageService storageService
+    AzureStorageService storageService
 ) : ControllerBase
 {
     private const string Container = "container";
